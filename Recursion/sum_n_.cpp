@@ -8,6 +8,7 @@ int sum(int n){
   return ans;
 }
 int main(){
- cout<<sum(7);
+ cout<<sum(4);
  return 0;
 }
+
