@@ -13,5 +13,7 @@ int main(){
    cout<< "Accessing value stored at position pointer pointing : " << *ptr << endl;
    cout<<"Address of pointer : "<< &ptr << endl;
 
+  int** ptr2=&ptr;
+  cout<<"value at a is:"<<**ptr2;
   return 0;
 }
