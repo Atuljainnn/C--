@@ -6,8 +6,9 @@ void sub_sequences(string str,string output, int index){
     return;
   }
   
+  char ch=str[index];
   sub_sequences(str,output,index+1);
-  output.push_back(str[index]);
+  output.push_back(ch);
   sub_sequences(str,output,index+1);
   }
 int main(){
