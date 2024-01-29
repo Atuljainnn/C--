@@ -12,16 +12,15 @@ void merge(int arr[],int s,int e)
   int k=s;
 
   for(int i=0; i<lenleft;k++,i++ ){
-    int left[i]=arr[k];
+    left[i]=arr[k];
     k++;
   }
   k=mid+1;
    for(int i=0; i<lenright; i++ ){
-    int right[i]=arr[k];
+     right[i]=arr[k];
     k++;
   }
-
-  int leftindex=0;
+ int leftindex=0;
   int rightindex=0;
   int mainarrayindex=s;
 
@@ -53,6 +52,7 @@ while(rightindex<lenright){
 }
 delete []left;
 delete []right;
+ 
 }
 
 void mergesort(int arr[],int size,int s,int e){
@@ -70,6 +70,7 @@ int main(){
   int s=0;
   int e=size-1;
   mergesort(arr,size,s,e);
+  
   for(int i=0;i<size; i++){
     cout<<arr[i]<<" ";
   }
