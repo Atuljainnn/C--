@@ -11,7 +11,7 @@ void merge(int arr[],int s,int e)
   
   int k=s;
 
-  for(int i=0; i<lenleft;k++,i++ ){
+  for(int i=0; i<lenleft; i++ ){
     left[i]=arr[k];
     k++;
   }
@@ -24,15 +24,15 @@ void merge(int arr[],int s,int e)
   int rightindex=0;
   int mainarrayindex=s;
 
-while(leftindex<lenleft && rightindex<<lenright)
+while(leftindex<lenleft && rightindex<lenright)
 {
-  if(arr[leftindex]<arr[rightindex]){
+  if(left[leftindex]<=right[rightindex]){
     arr[mainarrayindex]=left[leftindex];
     leftindex++;
     mainarrayindex++;
   }
   else{
-    arr[mainarrayindex]=left[rightindex];
+    arr[mainarrayindex]=right[rightindex];
     rightindex++;
     mainarrayindex++;
    }
@@ -47,7 +47,7 @@ while(leftindex<lenleft){
 while(rightindex<lenright){
 
   arr[mainarrayindex]=right[rightindex];
-  leftindex++;
+  rightindex++;
   mainarrayindex++;
 }
 delete []left;
@@ -65,10 +65,15 @@ void mergesort(int arr[],int size,int s,int e){
   merge(arr,s,e);
 }
 int main(){
-  int arr[]={4,3,6,7,2,8};
-  int size=6;
+  int arr[]={4,1,6,5,7,2,8};
+  int size=7;
   int s=0;
   int e=size-1;
+
+ for(int i=0;i<size; i++){
+    cout<<arr[i]<<" ";
+  }
+  cout<<endl;
   mergesort(arr,size,s,e);
   
   for(int i=0;i<size; i++){
