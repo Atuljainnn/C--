@@ -1,5 +1,9 @@
 #include<iostream>
 using namespace std;
+
+bool is_safe(int maze [4][4] ,int newx, int newy ){
+
+}
 int rat_maze(int maze[][4]){
   
 }
