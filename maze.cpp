@@ -1,8 +1,9 @@
 #include<iostream>
 #include<vector>
+#include<string>
 using namespace std;
 
-bool is_safe(int maze [4][4] ,int row ,int col,int newx, int newy,vector<vector<bool>>&visited ){
+bool is_safe(int maze [4][4] ,int row ,int col,int newx, int newy,vector<vector<bool> >&visited ){
   if((newx>=0 && newx<row)&&(newy>=0&&newy<col)&&
     visited[newx][newy]==false &&
      maze[newx][newy]==1
@@ -14,8 +15,11 @@ bool is_safe(int maze [4][4] ,int row ,int col,int newx, int newy,vector<vector<
 }
 
 }
-int rat_maze(int maze[4][4],int row,int col,int srcx,int srcy, string &output,vector<vector<bool>>&visited){
-  
+void rat_maze(int maze[4][4],int row,int col,int srcx,int srcy, string &output,vector<vector<bool> >&visited){
+  if(srcx=row-1&& srcy==col-1){
+    cout<<output<<endl;
+    return;
+  }
 
   //Up
   int newx=srcx+1;
@@ -29,8 +33,8 @@ int rat_maze(int maze[4][4],int row,int col,int srcx,int srcy, string &output,ve
 
   }
   //Right
-   int newx=srcx;
-   int newy=srcy+1;
+    newx=srcx;
+    newy=srcy+1;
     if(is_safe(maze,row,col,newx ,newy,visited)){
     visited[newx][newy]=true;
     output.push_back('R');
@@ -40,8 +44,8 @@ int rat_maze(int maze[4][4],int row,int col,int srcx,int srcy, string &output,ve
 
   }
   //Down
-   int newx=srcx-1;
-   int newy=srcy;
+    newx=srcx-1;
+    newy=srcy;
     if(is_safe(maze,row,col,newx ,newy,visited)){
     visited[newx][newy]=true;
     output.push_back('D');
@@ -51,8 +55,8 @@ int rat_maze(int maze[4][4],int row,int col,int srcx,int srcy, string &output,ve
 
   }
   //Left
-  int newx=srcx;
-  int newy=srcy-1;
+   newx=srcx;
+   newy=srcy-1;
    if(is_safe(maze,row,col,newx ,newy,visited)){
     visited[newx][newy]=true;
     output.push_back('L');
@@ -74,7 +78,7 @@ int main(){
     int srcx=0;
     int srcy=0;
     string output=" ";
-    vector<vector<bool>>visited(row,vector<bool>(col,false));
+    vector<vector<bool> >visited(row,vector<bool>(col,false));
   
    rat_maze(maze,row,col,srcx,srcy,output,visited);
   return 0;
