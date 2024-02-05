@@ -1,6 +1,6 @@
 #include<iostream>
 #include<vector>
-#include<string>
+#include<string.h>
 using namespace std;
 
 bool is_safe(int maze [4][4] ,int row ,int col,int newx, int newy,vector<vector<bool> >&visited ){
@@ -15,8 +15,8 @@ bool is_safe(int maze [4][4] ,int row ,int col,int newx, int newy,vector<vector<
 }
 
 }
-void rat_maze(int maze[4][4],int row,int col,int srcx,int srcy, string &output,vector<vector<bool> >&visited){
-  if(srcx=row-1&& srcy==col-1){
+void rat_maze(int maze[4][4],int row,int col,int srcx,int srcy, string output,vector<vector<bool> >&visited){
+  if(srcx==row-1 && srcy==col-1){
     cout<<output<<endl;
     return;
   }
@@ -26,10 +26,10 @@ void rat_maze(int maze[4][4],int row,int col,int srcx,int srcy, string &output,v
   int newy=srcy;
   if(is_safe(maze,row,col,newx ,newy,visited)){
     visited[newx][newy]=true;
-    output.push_back('U');
-    rat_maze(maze,row,col,newx,newy,output,visited);
-    output.pop_back();
-    visited[newx][newy]==false;
+    
+    rat_maze(maze,row,col,newx,newy,output + 'U',visited);
+   
+    visited[newx][newy]=false;
 
   }
   //Right
@@ -37,10 +37,9 @@ void rat_maze(int maze[4][4],int row,int col,int srcx,int srcy, string &output,v
     newy=srcy+1;
     if(is_safe(maze,row,col,newx ,newy,visited)){
     visited[newx][newy]=true;
-    output.push_back('R');
-    rat_maze(maze,row,col,newx,newy,output,visited);
-    output.pop_back();
-    visited[newx][newy]==false;
+    rat_maze(maze,row,col,newx,newy,output + 'R',visited);
+    
+    visited[newx][newy]=false;
 
   }
   //Down
@@ -48,10 +47,8 @@ void rat_maze(int maze[4][4],int row,int col,int srcx,int srcy, string &output,v
     newy=srcy;
     if(is_safe(maze,row,col,newx ,newy,visited)){
     visited[newx][newy]=true;
-    output.push_back('D');
-    rat_maze(maze,row,col,newx,newy,output,visited);
-    output.pop_back();
-    visited[newx][newy]==false;
+    rat_maze(maze,row,col,newx,newy, output + 'D',visited);
+     visited[newx][newy]=false;
 
   }
   //Left
@@ -59,10 +56,8 @@ void rat_maze(int maze[4][4],int row,int col,int srcx,int srcy, string &output,v
    newy=srcy-1;
    if(is_safe(maze,row,col,newx ,newy,visited)){
     visited[newx][newy]=true;
-    output.push_back('L');
-    rat_maze(maze,row,col,newx,newy,output,visited);
-    output.pop_back();
-    visited[newx][newy]==false;
+    rat_maze(maze,row,col,newx,newy,output + 'L',visited);
+    visited[newx][newy]=false;
 
   }
 }
@@ -79,7 +74,7 @@ int main(){
     int srcy=0;
     string output=" ";
     vector<vector<bool> >visited(row,vector<bool>(col,false));
-  
-   rat_maze(maze,row,col,srcx,srcy,output,visited);
+    visited[srcx][srcy] = true;
+    rat_maze(maze,row,col,srcx,srcy,output,visited);
   return 0;
 }
