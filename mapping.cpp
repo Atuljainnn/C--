@@ -27,7 +27,7 @@ for(auto ch:msg){
 int main(){
   string Str="atul";
   string msg="msg";
-  string Ans;
-  mapping(Str,msg,Ans);
+  string ans;
+  mapping(Str,msg,ans);
   return 0;
 }
