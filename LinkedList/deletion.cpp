@@ -97,14 +97,17 @@ void deleteAtAnyPos(Node* &head, Node* &tail, int pos){
 
   if(head==NULL){
     cout<<"can not delete"<<endl;
+    return;
   }
-  else if(head->next==NULL){
+   if(head==tail){
+    
     Node* temp=head;
     head=NULL;
     tail=NULL;
     delete temp;
+    return;
   }
-  else if(pos<=1){
+  if(pos<=1){
      Node* temp=head;
      head=head->next;
      temp->next=NULL;
@@ -112,14 +115,25 @@ void deleteAtAnyPos(Node* &head, Node* &tail, int pos){
      
   }
   else if(pos>=len){
-     Node* curr=head;
-     Node* prev=NULL;
-     while(curr->next!=NULL){
-     prev=curr;
-     curr=curr->next;
+     Node* prev=head;
+     while(prev->next!=tail){
+     prev=prev->next;
      }
      prev->next=NULL;
+     delete tail;
      tail=prev;
+  }
+  else{
+     Node* curr=head;
+     Node* prev=NULL;
+     while(pos!=1){
+     prev=curr;
+     curr=curr->next;
+     pos--;
+     }
+     prev->next=curr->next;
+     curr->next=NULL;
+     delete curr;
   }
   }
 
@@ -129,15 +143,18 @@ int main(){
  Node* tail=NULL;
 
 
-insertAtMiddle(head,tail,5,1);
-insertAtMiddle(head,tail,10,2);
-insertAtMiddle(head,tail,25,3);
-insertAtMiddle(head,tail,20,4);
+insertAtMiddle(head,tail,10,1);
+insertAtMiddle(head,tail,15,2);
+insertAtMiddle(head,tail,20,3);
+insertAtMiddle(head,tail,25,4);
 insertAtMiddle(head,tail,30,5);
+insertAtMiddle(head,tail,35,6);
 Print(head);
 cout<<"Printing after delete:"<<endl;
+
 deleteAtAnyPos(head, tail,1);
-deleteAtAnyPos(head, tail,5);
+deleteAtAnyPos(head, tail,4);
+deleteAtAnyPos(head, tail,2);
 
  Print(head);
 return 0;
