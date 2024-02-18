@@ -12,6 +12,9 @@ Node(int data){
   this->next=NULL;
 }
 };
+
+//print
+
 void Print(Node* &head){
   Node* temp=head;
   while(temp!=NULL){
@@ -20,6 +23,8 @@ void Print(Node* &head){
   }
   cout<<endl;
 }
+
+//find length
 
 int findlength(Node* &head){
 Node* temp=head;
@@ -30,6 +35,9 @@ while(temp!=NULL){
 }
 return count;
 }
+
+//insert at head
+
 void insertAtHead(Node* &head,Node* &tail,int data){
   if(head==NULL){
    Node* newNode=new Node(data);
@@ -41,6 +49,9 @@ void insertAtHead(Node* &head,Node* &tail,int data){
   head=newNode;
   }
 }
+
+//insert at tail
+
 void insertAtTail(Node* &head,Node* &tail,int data){
  if(head==NULL){
     Node* newNode=new Node(data);
@@ -51,6 +62,9 @@ void insertAtTail(Node* &head,Node* &tail,int data){
   tail->next=newNode;
   tail=newNode;}
 }
+
+//insert at middle
+
 void insertAtMiddle(Node* &head,Node* &tail,int data,int pos){
 int len=findlength(head);
 
@@ -73,26 +87,41 @@ else{
   }
   prev->next=newNode;
   newNode->next=curr;
-}
+  }
 }
 
+//delete from any position
+
 void deleteAtAnyPos(Node* &head, Node* &tail, int pos){
+  int len=findlength(head);
+
   if(head==NULL){
     cout<<"can not delete"<<endl;
   }
-  if(head->next==NULL){
+  else if(head->next==NULL){
     Node* temp=head;
-    delete temp;
     head=NULL;
     tail=NULL;
+    delete temp;
   }
-  if(pos<=1){
+  else if(pos<=1){
      Node* temp=head;
      head=head->next;
      temp->next=NULL;
      delete temp;
      
-  }}
+  }
+  else if(pos>=len){
+     Node* curr=head;
+     Node* prev=NULL;
+     while(curr->next!=NULL){
+     prev=curr;
+     curr=curr->next;
+     }
+     prev->next=NULL;
+     tail=prev;
+  }
+  }
 
 int main(){
 
@@ -105,12 +134,11 @@ insertAtMiddle(head,tail,10,2);
 insertAtMiddle(head,tail,25,3);
 insertAtMiddle(head,tail,20,4);
 insertAtMiddle(head,tail,30,5);
+Print(head);
+cout<<"Printing after delete:"<<endl;
 deleteAtAnyPos(head, tail,1);
-deleteAtAnyPos(head, tail,1);
-deleteAtAnyPos(head, tail,1);
-deleteAtAnyPos(head, tail,1);
+deleteAtAnyPos(head, tail,5);
 
  Print(head);
- cout<<"program";
 return 0;
 }
