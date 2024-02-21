@@ -43,6 +43,8 @@ return count;
 void insertATHead(Node* &head,Node* &tail,int data){
    if(head==NULL){
     Node* NewNode=new Node(data);
+    head=NewNode;
+    tail=NewNode;
    }
  }
 
