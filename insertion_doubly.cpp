@@ -45,6 +45,8 @@ void insertATHead(Node* &head,Node* &tail,int data){
     Node* NewNode=new Node(data);
     head=NewNode;
     tail=NewNode;
+   }else{
+    
    }
  }
 
