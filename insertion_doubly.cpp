@@ -46,7 +46,11 @@ void insertATHead(Node* &head,Node* &tail,int data){
     head=NewNode;
     tail=NewNode;
    }else{
-    
+    Node* temp=head;
+     Node* NewNode=new Node(data);
+     NewNode->next=temp;
+     head->prev=NewNode;
+     head=NewNode;
    }
  }
 
