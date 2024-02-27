@@ -46,19 +46,32 @@ void insertATHead(Node* &head,Node* &tail,int data){
     head=NewNode;
     tail=NewNode;
    }else{
-    Node* temp=head;
      Node* NewNode=new Node(data);
-     NewNode->next=temp;
+     NewNode->next=head;
      head->prev=NewNode;
      head=NewNode;
    }
  }
-
+void insertAtTail(Node* &head,Node* &tail,int data){
+   if(head==NULL){
+    Node* NewNode=new Node(data);
+    head=NewNode;
+    tail=NewNode;
+   }else{
+     Node* NewNode=new Node(data);
+     tail->next=NewNode;
+     NewNode->prev=tail;;
+     tail=NewNode;
+   }
+ }
 int main(){
   
   Node* head=NULL;
   Node* tail=NULL;
   insertATHead(head,tail,5);
+  insertATHead(head,tail,7);
+  insertATHead(head,tail,8);
+  insertAtTail(head,tail,5);
   Print(head);
 
   return 0;
