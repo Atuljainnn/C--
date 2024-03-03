@@ -16,7 +16,7 @@ class Queue{
  void push(int val){
 
   //full
-  if(rear==size-1){
+  if((rear==size-1&&front==0)||rear==front-1){
     cout<<"queue overflow"<<endl;
     return;
   }
@@ -25,6 +25,11 @@ class Queue{
     front++;
     rear++;
     arr[rear]=val;
+  }
+  //circular
+  else if(rear==size-1&&front!=0){
+    rear=0;
+    arr[rear]=val;  
   }
   //normal
   else{
@@ -44,6 +49,11 @@ class Queue{
      front=-1;
      rear=-1;
    }
+   //circular
+   else if(front==size-1){
+      arr[front]=-1;
+      front=0;
+   }
    //normal case
    else{
     arr[front]=-1;
@@ -53,7 +63,7 @@ class Queue{
  
  bool isEmpty()
  {
-  if(front=-1 && rear==-1)
+  if(front==-1 && rear==-1)
   {
     return true;
   }else
@@ -78,6 +88,20 @@ if(front==-1 && rear==-1)
     return rear-front+1;
    }
 }
+int getRear() {
+ if(rear==-1){
+    return -1;
+   }else{
+       return arr[rear];
+        }  
+    }
+   bool isFull() {
+      if((front==0&&rear==size-1)||(rear==front-1)){
+        return 1;
+       }else{
+         return 0;
+      }
+      }
 void print(){
   //just for check queue
   cout<<"printing queue:";
@@ -96,12 +120,17 @@ int main(){
   q.push(30);
   q.push(40);
   q.push(50);
+  
  cout<<"size of queue is:"<<q.getSize()<<endl;
  cout<<"Front element of queue is:"<<q.getFront()<<endl;
+ cout<<"rear element of queue is:"<<q.getRear()<<endl;
  q.print();
  q.pop();
+ q.pop();
+ 
  cout<<"size of queue is:"<<q.getSize()<<endl;
  cout<<"Front element of queue is:"<<q.getFront()<<endl;
+ cout<<"rear element of queue is:"<<q.getRear()<<endl;
  q.print();
  if(q.isEmpty()){
   cout<<"queue is empty"<<endl;
@@ -110,3 +139,4 @@ int main(){
  }
   return 0;
 }
+
