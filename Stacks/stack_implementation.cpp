@@ -7,9 +7,16 @@ class Stack{
  int top;
  
  Stack(int size){
+
   arr=new int[size];
   this->size=size;
   this->top=-1;
+ }
+ void push(int val){
+
+ }
+ void pop(){
+  
  }
 };
 int main(){
