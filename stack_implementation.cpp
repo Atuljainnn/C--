@@ -13,10 +13,12 @@ class Stack{
   this->top=-1;
  }
  void push(int val){
-
+    top++;
+    arr[top]=val;
  }
  void pop(){
-  
+  arr[top]=-1;
+  top--;
  }
 };
 int main(){
